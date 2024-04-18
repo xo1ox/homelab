@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  heimdall:
+    image: linuxserver/heimdall
+    container_name: heimdall
+    networks:
+      - proxy
+    volumes:
+      - data:/config
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    ports:
+      - 90:80
+volumes: 
+  data:
+networks:
+  proxy:
+    external: true
