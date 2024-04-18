@@ -1,0 +1,25 @@
+
+services:
+  jellyfin:
+    image: linuxserver/jellyfin:latest
+    container_name: jellyfin
+    networks:
+      - proxy
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ="Europe/Berlin"
+    volumes:
+      - config:/config
+      - cache:/cache
+      - media:/media
+    ports:
+      - 8096:8096
+    restart: unless-stopped
+volumes:
+  config:
+  cache:
+  media:
+networks:
+  proxy:
+    external: true
