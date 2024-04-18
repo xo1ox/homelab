@@ -1,0 +1,16 @@
+version: "3"
+services:
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    networks:
+      - proxy
+    volumes:
+      - data:/var/run/docker.sock
+    restart: unless-stopped
+    command: --interval 43200 --cleanup
+volumes:
+  data:
+networks:
+  proxy:
+    external: true
